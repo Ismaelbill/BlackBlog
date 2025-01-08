@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    {{ post.title }}
+
+{% endblock %}
+
+{% block css_files %}
+    <link rel="stylesheet" href="{% static  'home/css/post_detail.css' %}">
+{% endblock %}
+
+{% block content %}
+<a id="home" href="{% url 'home' %}">Home</a>
+
+    <div id="post">
+        <h3>Author: <a href="/users/{{post.user}}">{{post.user}}</a></h3>
+        <h4>Title: {{post.title}}</h4>
+        {% if user.is_authenticated and post.user == user%}
+        <form action="{% url 'post_delete' post.slug post.id %}" method="post">
+            {% csrf_token %}
+            <button type="submit">Delete post</button>
+        </form>
+        {% endif %}
+        <h5>Content:</h5>
+        <p class="res-line">{{post.content}}</p>
+        <small>{{post.created_at}}</small>
+    </div>
+    {% if comments %}
+    <div id="comments">
+        <h5>Comments:</h5>
+        {% for comment in comments %}
+        <div>
+
+            <h3>{{comment.user}}</h3>
+            <p class="res-line">{{comment.content}}</p>
+            <small>{{comment.created_at}}</small>
+        </div>
+        {% endfor %}
+    </div>
+        
+    {% endif %}
+    <div id="form-comment">
+        <h2>Add A Comment:</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{form.content}}
+            <input id="submit-btn" type="submit" value="submit">
+        </form>
+    </div>
+{% endblock %}

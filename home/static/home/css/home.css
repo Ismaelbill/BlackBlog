@@ -1,0 +1,38 @@
+h1,
+#crt-pst {
+  margin-left: 1rem;
+}
+
+.wlcm-h {
+  margin: 3rem 1rem;
+}
+
+.container-home div {
+  margin: 2rem 1rem;
+}
+
+#crt-pst {
+  margin-bottom: 2rem;
+}
+
+#crt-pst a {
+  border: 1px solid #000;
+  padding: 1rem;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+#crt-pst a:hover {
+  background-color: #000;
+  color: #fff;
+}
+
+.container-home h4 {
+  margin: 1rem 0;
+}
+
+.container-home div small {
+  display: block;
+  margin-top: -10px;
+  font-size: 12px;
+}

@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+
+{% block title %}{{ profile.user.username }}{% endblock %}
+
+{% block css_files %}
+    <link rel="stylesheet" href="{% static 'users/css/profile.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<p id="home"><a href="/">get back</a></p>
+<div class="profile">
+    {% if profile.photo %}
+        <img src="{{ profile.photo.url }}" alt="{{ profile.user.username }}'s photo">
+    {% else %}
+        <p>No photo uploaded</p>
+    {% endif %}
+    <p>Bio: {{profile.bio}}</p>
+    <p>Joined: {{ profile.user.date_joined | date:"M j, Y."  }}</p>
+    {% if user.is_authenticated and user == profile.user %}
+    <form action="{% url 'user_delete' user.username user.id %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Delete Account</button>
+    </form>
+        
+    {% endif %}
+
+</div>
+
+{% if posts %}
+        <h1>Posts:</h1>
+        <div class="posts">
+
+            {% for post in posts %}
+            <div>
+                <h3><a href="/users/{{post.user}}">@{{post.user | title}}</a></h3>
+                <h4><a href="{% url 'post_detail' slug=post.slug %}">{{post.title | title}}</a></h4>
+                <small>{{post.created_at | date:"M j, Y. g:i A" }}</small>
+            </div>
+            
+            {% endfor %}
+        </div>
+    {% endif %}
+
+{% if request.user == profile.user %}
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div id="upload-photo">
+            <input type="file" name="{{ form.photo.name }}" id="{{ form.photo.auto_id }}" onchange="previewImage(event)">
+        </div>
+        <img id="imagePreview" src="#" alt="Image Preview" style="display: none; max-width: 200px; max-height: 200px;">
+        <br>
+        {% if form.instance.photo %}
+            <div>
+                <input type="checkbox" name="{{ form.photo.name }}-clear" id="{{ form.photo.auto_id }}-clear">
+                <label for="{{ form.photo.auto_id }}-clear">Delete Current Profile Picture</label>
+            </div>
+        {% endif %}
+        
+        <br>
+        
+        {{form.bio}}
+        <br>
+        <input type="submit" name="sub" id="submit-btn">
+    </form>
+    <script> 
+        function previewImage(event) {
+            var reader = new FileReader();
+            reader.onload = function(){
+             var output = document.getElementById('imagePreview');
+             output.src = reader.result;
+             output.style.display = 'block'; 
+            }; reader.readAsDataURL(event.target.files[0]); 
+        } 
+    </script>
+{% endif %}
+{% endblock %}

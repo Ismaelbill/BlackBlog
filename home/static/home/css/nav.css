@@ -1,0 +1,51 @@
+nav {
+    padding: 1rem;
+}
+nav, ul {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+ul {
+    list-style: none;
+    gap: 1rem;
+}
+
+.div-field {
+    border: 1px solid black;
+    padding: 8px;
+    border-radius: 5px;
+
+}
+
+.div-field #search-bar {
+    border: none;
+    outline: none;
+    width: 200px;
+    height: 25px;
+    color: #000;
+}
+
+.div-field #btn-submit {
+    border: none;
+    outline: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #fff;
+    border: 1px solid black;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all .6s;
+}
+
+.div-field #btn-submit:hover {
+    background-color: #000;
+    color: #fff;
+}
+
+h1 a:hover {
+    text-decoration: none;
+}

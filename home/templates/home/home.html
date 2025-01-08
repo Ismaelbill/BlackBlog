@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block css_files %}
+    <link rel="stylesheet" href="{% static 'home/css/nav.css' %}">
+    <link rel="stylesheet" href="{% static 'home/css/home.css' %}">
+{% endblock %}
+
+{% block title %}
+    Black Blogs
+{% endblock %}
+
+{% block content %}
+    {% include 'home/nav.html'   %}
+    <div class="container-home">
+        {% if user.is_authenticated %}
+        <h1 class="wlcm-h">hello, <a href="users/{{user.username}}">{{user.username}}</a></h1>
+        <p id="crt-pst"><a href="users/{{user}}/create-post">create a post</a></p>
+            
+        {% else %}
+        <h1 class="wlcm-h">Hello, Welcome To Our Website </h1>
+        {% endif %}
+
+        {% if users %}
+            <h1>Results For Users:</h1>
+            {% for u in users %}
+                <div>
+                    <h3><a href="users/{{u.username}}">@{{u.username | title}}</a></h3>
+                    <p>{{u.email}}</p>
+                </div>
+            {% endfor %}
+        {% endif %}
+        {% if found_posts %}
+            <h1>Results:</h1>
+            {% for post in found_posts %}
+                    <div>
+                    
+                    <h3><a href="users/{{post.user}}">@{{post.user | title}}</a></h3>
+                    <h4><a href="{% url 'post_detail' slug=post.slug %}">{{post.title}}</a></h4>
+                    <small>{{post.created_at | date:"M j, Y. g:i A" }}</small>
+
+                    </div>
+                        
+            {% endfor %}
+        
+        {% elif posts %}
+            <h1>Posts:</h1>
+            {% for post in posts %}
+                    <div>
+                        <h3><a href="users/{{post.user}}">@{{post.user | title}}</a></h3>
+                        <h4><a href="{% url 'post_detail' slug=post.slug %}">{{post.title | title}}</a></h4>
+                        <small>{{post.created_at | date:"M j, Y. g:i A" }}</small>
+                    </div>
+                
+            {% endfor %}
+        {% endif %}
+    </div>
+{% endblock %}

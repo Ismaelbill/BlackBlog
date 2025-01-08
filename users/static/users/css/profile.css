@@ -1,0 +1,74 @@
+#home,
+h1 {
+  margin: 1rem;
+}
+
+.profile {
+  margin-left: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.profile img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.posts,
+form {
+  margin: 0 0 0 1rem;
+}
+
+.posts div h4 {
+  margin: 5px 0 0 0;
+}
+
+form {
+  margin-top: 1rem;
+}
+
+#upload-photo {
+  position: relative;
+  width: 50%;
+  border: 1px solid black;
+  margin-right: 10px;
+  padding: 5px;
+  cursor: pointer;
+}
+
+#upload-photo:hover {
+  cursor: pointer;
+}
+
+#upload-photo::after {
+  content: 'upload photo';
+  position: absolute;
+  left: 5px;
+  cursor: pointer;
+  z-index: -1;
+}
+
+#id_photo {
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+form img {
+  margin-top: 10px;
+}
+
+form #submit-btn {
+  background-color: #fff;
+  padding: 14px;
+  border: 1px solid;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 1rem;
+}

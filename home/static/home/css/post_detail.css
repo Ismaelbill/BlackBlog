@@ -1,0 +1,52 @@
+a#home {
+    display: block;
+  margin: 1rem;
+}
+
+#post, #comments, #form-comment {
+  margin: 1rem;
+
+}
+
+#post h4 {
+  margin: 1rem 0;
+}
+#post h5 {
+  margin-bottom: 5px;
+}
+
+#comments h5 {
+  margin-bottom: -10px;
+}
+#comments div {
+    margin-top: 1rem;
+}
+
+#comments div p {
+    margin: 0 0 5px ;
+}
+
+#comments div small {
+  display: block;
+  font-size: 12px;
+}
+
+
+form textarea {
+    width: 100%;
+    padding: 5px;
+}
+
+form #submit-btn {
+    background-color: #fff;
+    padding: 14px;
+    border: 1px solid;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+
+.res-line {
+  white-space: pre-wrap;
+}

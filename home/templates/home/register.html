@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    register
+{% endblock %}
+
+{% block content %}
+<a href="{% url 'home' %}">Home</a>
+
+     <form method="post">
+            {% csrf_token %}
+            {% for f in form %}
+                <p>{{f}}</p>
+            {% endfor %}
+            <input type="submit" name="register" id="">
+        <p>already signed ? <a href="{% url 'login' %}">log In</a></p>
+        </form>
+{% endblock %}

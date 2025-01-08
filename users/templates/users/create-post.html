@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+
+{% block css_files %}
+    <link rel="stylesheet" href="{%  static 'users/css/create-post.css'  %}">
+{% endblock %}
+
+{% block title %}
+    create post
+{% endblock %}
+
+{% block content %}
+<a href="{% url 'home' %}">Home</a>
+{% if form %}
+    <form action="" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="submit" name="submit" id="submit-btn">
+        </form>
+    
+{% endif %}
+{% if posts %}
+    {% for post in posts %}
+        <h3>{{post.title}}</h3>
+        <p>{{post.content}}</p>
+    {% endfor %}
+{% endif %}
+{% endblock %}
